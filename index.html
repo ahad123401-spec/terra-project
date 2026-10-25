@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#10121b">
+
+    <title>Cool Calculator</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <div class="app-shell">
+
+        <header class="topbar">
+            <a class="brand" href="#" aria-label="Cool Calculator home">
+                <span class="brand-icon">C</span>
+                <span>Cool Calculator</span>
+            </a>
+
+            <nav class="main-nav" aria-label="Main navigation">
+                <button class="nav-button active" data-page="calculator">
+                    Calculator
+                </button>
+
+                <button class="nav-button" data-page="history">
+                    History
+                </button>
+
+                <button class="nav-button" data-page="settings">
+                    Settings
+                </button>
+            </nav>
+
+            <button
+                class="icon-button"
+                id="theme-toggle"
+                aria-label="Toggle color theme"
+                title="Toggle theme">
+                ☼
+            </button>
+        </header>
+
+        <main class="main-layout">
+
+            <section class="calculator-panel" id="calculator-page">
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">YOUR PERSONAL CALCULATOR</p>
+                        <h1>Let's calculate.</h1>
+                        <p class="muted">
+                            Simple arithmetic, without the clutter.
+                        </p>
+                    </div>
+
+                    <span class="status-badge">Ready</span>
+                </div>
+
+                <section class="display-card" aria-label="Calculator display">
+                    <div class="display-top">
+                        <span id="expression-label">
+                            Current calculation
+                        </span>
+
+                        <button
+                            class="text-button"
+                            id="copy-result"
+                            type="button">
+                            Copy result
+                        </button>
+                    </div>
+
+                    <div
+                        class="expression"
+                        id="expression"
+                        aria-live="polite">
+                        0
+                    </div>
+
+                    <output
+                        class="result"
+                        id="result"
+                        aria-live="polite">
+                        0
+                    </output>
+
+                    <p class="display-message" id="display-message">
+                        Enter a calculation to begin.
+                    </p>
+                </section>
+
+                <div class="mode-bar">
+                    <button
+                        class="mode-button active"
+                        data-mode="basic">
+                        Basic
+                    </button>
+
+                    <button
+                        class="mode-button"
+                        data-mode="scientific">
+                        Scientific
+                    </button>
+
+                    <span class="keyboard-hint">
+                        Keyboard supported
+                    </span>
+                </div>
+
+                <section
+                    class="scientific-grid"
+                    id="scientific-buttons"
+                    aria-label="Scientific operations"
+                    hidden>
+
+                    <button data-action="square">x²</button>
+                    <button data-action="sqrt">√x</button>
+                    <button data-action="power">xʸ</button>
+                    <button data-action="reciprocal">1/x</button>
+
+                    <button data-action="sin">sin</button>
+                    <button data-action="cos">cos</button>
+                    <button data-action="tan">tan</button>
+                    <button data-action="log">log</button>
+
+                    <button data-action="ln">ln</button>
+                    <button data-action="factorial">x!</button>
+                    <button data-action="pi">π</button>
+                    <button data-action="e">e</button>
+                </section>
+
+                <section class="keypad" aria-label="Calculator buttons">
+                    <button class="key utility" data-action="clear">
+                        AC
+                    </button>
+
+                    <button class="key utility" data-action="backspace">
+                        ⌫
+                    </button>
+
+                    <button class="key utility" data-action="percent">
+                        %
+                    </button>
+
+                    <button
+                        class="key operator"
+                        data-operator="/"
+                        aria-label="Divide">
+                        ÷
+                    </button>
+
+                    <button class="key" data-digit="7">7</button>
+                    <button class="key" data-digit="8">8</button>
+                    <button class="key" data-digit="9">9</button>
+
+                    <button
+                        class="key operator"
+                        data-operator="*"
+                        aria-label="Multiply">
+                        ×
+                    </button>
+
+                    <button class="key" data-digit="4">4</button>
+                    <button class="key" data-digit="5">5</button>
+                    <button class="key" data-digit="6">6</button>
+
+                    <button
+                        class="key operator"
+                        data-operator="-"
+                        aria-label="Subtract">
+                        −
+                    </button>
+
+                    <button class="key" data-digit="1">1</button>
+                    <button class="key" data-digit="2">2</button>
+                    <button class="key" data-digit="3">3</button>
+
+                    <button
+                        class="key operator"
+                        data-operator="+"
+                        aria-label="Add">
+                        +
+                    </button>
+
+                    <button class="key utility" data-action="sign">
+                        ±
+                    </button>
+
+                    <button class="key zero-key" data-digit="0">
+                        0
+                    </button>
+
+                    <button class="key" data-action="decimal">
+                        .
+                    </button>
+
+                    <button class="key equals" data-action="equals">
+                        =
+                    </button>
+                </section>
+
+                <p class="keyboard-footer">
+                    Enter = calculate · Escape = clear · Backspace = delete
+                </p>
+            </section>
+
+            <aside class="sidebar" aria-label="Calculation history">
+                <div class="sidebar-heading">
+                    <div>
+                        <p class="eyebrow">YOUR WORKSPACE</p>
+                        <h2>Recent activity</h2>
+                    </div>
+
+                    <button
+                        class="text-button"
+                        id="clear-history"
+                        type="button">
+                        Clear
+                    </button>
+                </div>
+
+                <div
+                    class="history-list"
+                    id="history-list"
+                    aria-live="polite">
+
+                    <div class="empty-state" id="empty-history">
+                        <span class="empty-icon">↗</span>
+                        <h3>No calculations yet</h3>
+                        <p>
+                            Your recent calculations will appear here.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="sidebar-footer">
+                    <span>Calculation count</span>
+                    <strong id="calculation-count">0</strong>
+                </div>
+            </aside>
+
+            <section class="secondary-page" id="history-page" hidden>
+                <p class="eyebrow">YOUR ACTIVITY</p>
+                <h1>Calculation history</h1>
+
+                <p class="muted">
+                    Review previous calculations and reuse their results.
+                </p>
+
+                <div id="full-history-list"></div>
+
+                <button
+                    class="secondary-button"
+                    id="export-history"
+                    type="button">
+                    Export history
+                </button>
+            </section>
+
+            <section class="secondary-page" id="settings-page" hidden>
+                <p class="eyebrow">MAKE IT YOURS</p>
+                <h1>Settings</h1>
+
+                <p class="muted">
+                    Customize your calculator experience.
+                </p>
+
+                <div class="setting-row">
+                    <div>
+                        <h3>Sound effects</h3>
+                        <p class="muted">
+                            Optional button feedback.
+                        </p>
+                    </div>
+
+                    <input type="checkbox" id="sound-setting">
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <h3>Save calculation history</h3>
+                        <p class="muted">
+                            Keep recent calculations in this browser.
+                        </p>
+                    </div>
+
+                    <input
+                        type="checkbox"
+                        id="history-setting"
+                        checked>
+                </div>
+
+                <div class="setting-row">
+                    <div>
+                        <h3>Angle unit</h3>
+                        <p class="muted">
+                            Used by scientific trigonometry functions.
+                        </p>
+                    </div>
+
+                    <select id="angle-setting">
+                        <option value="deg">Degrees</option>
+                        <option value="rad">Radians</option>
+                    </select>
+                </div>
+
+                <button
+                    class="secondary-button"
+                    id="reset-settings"
+                    type="button">
+                    Reset settings
+                </button>
+            </section>
+
+        </main>
+
+        <footer class="app-footer">
+            <span>Cool Calculator</span>
+            <span>Built one calculation at a time.</span>
+            <span id="footer-version">Version 1.0</span>
+        </footer>
+
+    </div>
+</body>
+</html>
